@@ -6,18 +6,26 @@ dir (nama folder) && touch (membuat file) [Readme.md](http://readme.md/)
 git reset HEAD --nama folder/namafile
 
 
+
+
 **Membuat Branch**
 	1. git branch develop(nama branch)
 	2. git branch (melihat branch yang telah dibuat)
 	3. git push origin develop
 
 
+
+
 **Cara pindah branch**
 	1. git checkout develop(nama branch yang dituju)
 
 
+
+
 **Shortcut untuk membuat branch dan cehckout**
 	1. git checkout -b namaBranch
+
+
 
 
 **fungsi Compare & pull request**
@@ -26,16 +34,22 @@ untuk ngasih tau kalau kalian bikin update / changes nambahin file dll dan mau d
 branch dibuat agar ketika developer membuat perubahan, branch master tidak akan terganggu
 
 
+
+
 **ketika di branch akan dilakukan penggabungan (merge)**
 	1. git add .
 	2. git commit -m "Update index.js"
 	3. git push origin namaBranch
 
 
+
+
 **untuk mengambil update dari branch lain**
 git pull origin namabranchh yang mau diambil
 
 pull : ngambil update dari remote branch
+
+
 
 
 
