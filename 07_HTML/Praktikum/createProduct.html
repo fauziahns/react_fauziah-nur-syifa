@@ -10,14 +10,40 @@
     <h1>Create Product</h1>
     <h3>Detail Product</h3>
     <form action="">
-      Product Name : <br />
-      <input type="text" /> <br />
-      Product Category : <br />
-      <select name="category" id="category">
-        <option value="Category 1">Category 1</option>
-        <option value="Category 2">Category 2</option>
-        <option value="Category 3">Category 3</option>
-      </select>
+      <div>
+        <label for="name">Product Name :</label> <br />
+        <input type="text" />
+      </div>
+      <div>
+        <label for="category">Product Category :</label>
+        <div>
+          <select name="category" id="category">
+            <option value="volvo">Volvo</option>
+            <option value="mazda">Mazda</option>
+            <option value="lexus">Lexus</option>
+            <option value="ferari">Ferari</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="category">Product Freshmess :</label>
+        <div>
+          <input type="radio" name="" id="" />
+          <label for="">Brand New</label>
+        </div>
+        <div>
+          <input type="radio" name="" id="" />
+          <label for="">Second Hank</label>
+        </div>
+        <div>
+          <input type="radio" name="" id="" />
+          <label for="">Fefurbished</label>
+        </div>
+      </div>
+      <div>
+        <label for="img">Image of Product</label>
+        <input type="file" name="img" id="">
+      </div>
     </form>
   </body>
 </html>
