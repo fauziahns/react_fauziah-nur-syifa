@@ -4,20 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Create Product</title>
   </head>
   <body>
     <h1>Create Product</h1>
-    <h3>Detail Product</h3>
+    <h2>Detail Product</h2>
     <form action="">
       <div>
-        <label for="name">Product Name :</label> <br />
-        <input type="text" />
+        <label for="name">Product Name :</label>
+        <div>
+          <input type="text" minlength="6" maxlength="50" required />
+        </div>
       </div>
       <div>
         <label for="category">Product Category :</label>
         <div>
-          <select name="category" id="category">
+          <select name="category" id="category" required>
             <option value="volvo">Volvo</option>
             <option value="mazda">Mazda</option>
             <option value="lexus">Lexus</option>
@@ -28,21 +30,36 @@
       <div>
         <label for="category">Product Freshmess :</label>
         <div>
-          <input type="radio" name="" id="" />
+          <input type="radio" name="" id="" required />
           <label for="">Brand New</label>
         </div>
         <div>
-          <input type="radio" name="" id="" />
+          <input type="radio" name="" id="" required />
           <label for="">Second Hank</label>
         </div>
         <div>
-          <input type="radio" name="" id="" />
-          <label for="">Fefurbished</label>
+          <input type="radio" name="" id="" required />
+          <label for="">Refurbished</label>
         </div>
       </div>
       <div>
         <label for="img">Image of Product</label>
-        <input type="file" name="img" id="">
+        <input type="file" name="img" id="" required />
+      </div>
+      <div>
+        <label for="info">Additional Description :</label>
+        <div>
+          <textarea name="" id="" cols="30" rows="10" required></textarea>
+        </div>
+      </div>
+      <div>
+        <label for="price">Label price :</label>
+        <div>
+          <input type="number" name="" id="" required />
+        </div>
+      </div>
+      <div>
+        <button>Submit</button>
       </div>
     </form>
   </body>
