@@ -5,34 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <!doctype html>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Landing Page</title>
   </head>
   <body>
-    <header class="header_simple">
-      <h2>Simple header</h2>
-    </header>
-    <hr />
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+      <div class="container-fluid ">
+        <a class="navbar-brand" href="#">Simple Header</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link active text-light bg-primary rounded px-3" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary " href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">About</a>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div>
-      <div class="hero">
+      <div class="hero container-fluid">
         <div class="hero_content">
-          <h1>
+          <h1 class="ms-5 fw-bold fs-2">
             Better Solutions For Your <br />
             Business
           </h1>
-          <p class="hero_p">
+          <p class="hero_p ms-5">
             We are team of talented designers making websites with <br />
             Bootstrap
           </p>
-          <div class="hero_button">
+          <div class="hero_button ms-5 mt-5">
             <a href="#" class="button">Get Started</a>
             <span class="hero_span" href="#">Watch Video</span>
           </div>
         </div>
         <img src="hero-img.png.png" alt="Banner Picture" />
     </div>
-    <hr />
     <footer class="footer">
     <div class="news">
       <h3 class="news_h3">Join Our Newsletter</h3>
@@ -95,5 +120,6 @@
         <p>Designed by <a href="#" class="footer_link">BootstrapMade</a></p>   
     </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
