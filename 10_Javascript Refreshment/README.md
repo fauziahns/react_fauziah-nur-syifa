@@ -18,3 +18,10 @@ Method adalah untuk membuat programm se-sederhana mungkin sesuai kegunaan masing
 	4. slice
 	5. filter
 	6. reduce
+
+Values & References
+JavaScript mempunyai 2 kategori dalam tipe data, yaitu primitive dan object.
+	-Primitive dalam pemrograman adalah unit pemrosesan terkecil dan elemen paling sederhana yang tersedia dalam bahasa pemrograman.
+	-Object adalah unit yang menyimpan property dan fungsi (method).
+Aturan sederhana untuk meneruskan value adalah bahwa semua nilai primitive dalam JavaScript diteruskan oleh value. Sedangkan untuk meneruskan reference bagaimanapun akan memberikan reference yang sama.
+
