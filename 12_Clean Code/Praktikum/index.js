@@ -35,6 +35,24 @@ submit.addEventListener('click', function (event) {
     if (productPrice.value.length == 0) alert('The Price Field Must be Filled In');
 
     if (productFreshness.value == '') alert('The Freshness Field Must be Filled In');
+
+    // add data to table
+
+    const tabel = document.getElementById('dataProduct');
+    const row = tabel.insertRow(1);
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
+    const cell6 = row.insertCell(5);
+
+    cell1.innerHTML = name;
+    cell2.innerHTML = category;
+    cell3.innerHTML = file;
+    cell4.innerHTML = freshness;
+    cell5.innerHTML = description;
+    cell6.innerHTML = price;
   } catch (error) {
     console.error(error);
   }
