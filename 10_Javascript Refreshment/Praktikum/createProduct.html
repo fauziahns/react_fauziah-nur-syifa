@@ -45,7 +45,7 @@
           <i class="fa-brands fa-bootstrap text-primary mt-5 mb-4 fa-4x"></i>
         </span>
         <h2>Create Product</h2>
-        <p class="fw-light mb-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="fw-light mb-4">Below is an example form built entirely with Bootstrap’s form controls. Each  form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
         </div>
       </div>
       <div class="warpper-product mt-5">
@@ -56,7 +56,7 @@
               <!-- productName -->
                 <div class="mt-4">
                   <label for="nameProduct" class="form-label" >Product name</label>
-                  <input type="email" class="form-control w-25" id="products" placeholder="" required>
+                  <input type="text" class="form-control w-25" id="products" placeholder="" >
                 </div>
 
                 <!-- productCatageroy -->
@@ -73,7 +73,7 @@
                 <div class="custom-file-button">
                   <div class="mb-3 width-custom">
                     <label for="formFile" class="form-label mt-4">Image of Product</label>
-                    <input class="form-control text-primary border-primary fontsize" type="file" id="formFile" required>
+                    <input class="form-control text-primary border-primary fontsize" type="file" id="formFile" >
                   </div>
                 </div>
 
@@ -81,19 +81,19 @@
                 <div>
                   <label for="formFile" class="form-label mt-3">Product Freshness</label>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="product_freshness" id="brandNew" onkeyup="chechValue()" required>
+                    <input class="form-check-input" type="radio" name="product_freshness" id="brandNew" onkeyup="chechValue()" >
                     <label class="form-check-label" for="flexRadioDefault1">
                       Brand New
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="product_freshness" id="secondHank" onkeyup="chechValue()" required>
+                    <input class="form-check-input" type="radio" name="product_freshness" id="secondHank" onkeyup="chechValue()" >
                     <label class="form-check-label" for="flexRadioDefault2">
                       Second Hand
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="product_freshness" id="Refurbished" onkeyup="chechValue()" required>
+                    <input class="form-check-input" type="radio" name="product_freshness" id="Refurbished" onkeyup="chechValue()" >
                     <label class="form-check-label" for="flexRadioDefault2">
                       Refufbished
                     </label>
@@ -109,7 +109,7 @@
                 <!-- productPrice -->
                 <div class="mb-3 w-50">
                   <label for="priceProduct" class="form-label">Product price</label>
-                  <input type="email" class="form-control " id="price" placeholder="$1" required>
+                  <input type="number" class="form-control " id="price" placeholder="$1" >
                 </div>
 
                 <!-- button -->
