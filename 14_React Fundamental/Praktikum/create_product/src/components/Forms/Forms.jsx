@@ -1,6 +1,9 @@
 import Button from '../Button/Button';
 import Input from './Input';
 import File from './File';
+import Textarea from './Tetxtarea';
+import Label from './Label';
+import Radio from './Radio';
 
 const Forms = () => {
   return (
@@ -9,13 +12,11 @@ const Forms = () => {
       <div className="col-6">
         <form action="" id="form_product" name="formdata">
           {/* productName */}
-          <Input label={'Product Name'} htmlFor={'nameProduct'} type={'email'} id={'products'} />
+          <Input type={'email'} id={'products'} />
 
           {/* productCatageroy */}
           <div>
-            <label htmlFor="categoryProduct" className="form-label mt-3">
-              Product Category
-            </label>
+            <Label htmlFor={'categoryProduct'} className={'form-label mt-3'} label={'Product Category'} />
             <select className="form-select w-25" aria-label="Default select example" id="option">
               <option value={1}>Toyota</option>
               <option value={2}>Lexsus</option>
@@ -24,44 +25,32 @@ const Forms = () => {
           </div>
 
           {/* productImage */}
-          <File label={'Image of Product'} htmlFor={'formFile'} type={'file'} id={'formFile'} className={'form-control text-primary border-primary fontsize w-50'} />
+          <File type={'file'} id={'formFile'} className={'form-control text-primary border-primary fontsize w-50'} />
 
           {/* productOption */}
+          <Label htmlFor={'formFile'} className={'form-label mt-3'} label={'Product Freshness'} />
           <div>
-            <label htmlFor="formFile" className="form-label mt-3">
-              Product Freshness
-            </label>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="product_freshness" id="brandNew" />
-              <label className="form-check-label" htmlFor="flexRadioDefault1">
-                Brand New
-              </label>
+            <div className="d-flex">
+              <Radio classNameInput={'form-check-input'} type={'radio'} id={'brandNew'} />
+              <Label htmlFor={'flexRadioDefault1'} className={'form-check-label'} label={'Brand New'} />
             </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="product_freshness" id="secondHank" />
-              <label className="form-check-label" htmlFor="flexRadioDefault2">
-                Second Hand
-              </label>
+            <div className="d-flex">
+              <Radio classNameInput={'form-check-input'} type={'radio'} id={'secondHank'} />
+              <Label htmlFor={'flexRadioDefault1'} className={'form-check-label'} label={'Second Hank'} />
             </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="product_freshness" id="Refurbished" />
-              <label className="form-check-label" htmlFor="flexRadioDefault2">
-                Refufbished
-              </label>
+            <div className="d-flex">
+              <Radio classNameInput={'form-check-input'} type={'radio'} id={'refurbished'} />
+              <Label htmlFor={'flexRadioDefault1'} className={'form-check-label'} label={'Refurbished'} />
             </div>
           </div>
+
           {/* productDescription */}
-          <div className="mb-3 w-50">
-            <label htmlFor="descriptionProduct" className="form-label mt-1">
-              Additional Description
-            </label>
-            <textarea className="form-control" id="description" rows={3} defaultValue={''} />
-          </div>
+          <Textarea className={'form-control'} id={'description'} rows={'3'} />
 
           {/* productPrice */}
           <Input label={'Price'} htmlFor={'priceProduct'} id={'price'} placeholder={'$1'} />
 
-          <Button />
+          <Button className={'btn btn-primary w-75 my-5'} value={'Submit'} />
         </form>
       </div>
       <div className="col"></div>
