@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-sm">
       <div className="container-fluid shadow-sm pb-2">
         <a className="navbar-brand" href="#">
           Simple Header
@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse d-flex flex-row-reverse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <a className="nav-link active text-light bg-primary rounded me-3" aria-current="page" href="#">
+              <a className="nav-link text-light bg-primary rounded me-3" aria-current="page" href="#">
                 Home
               </a>
             </li>
@@ -31,7 +31,7 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-primary me-3" href="#">
+              <a className="nav-link text-primary" href="#">
                 About
               </a>
             </li>

@@ -45,7 +45,7 @@ Event sendiri adalah suatu peristiwa yang dipicu oleh pengguna pada suatu kompon
 
 Contoh list event :
 1. clipboard events 
-2. form events (onChange, onSubmiit)
+2. form events (onChange, onSubmit)
 3. mouse event (onClick, onDoubleClick, onMouseOver)
 4. generic event (onError, onLoad)
 

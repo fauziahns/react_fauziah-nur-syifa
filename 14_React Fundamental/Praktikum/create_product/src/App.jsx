@@ -7,9 +7,15 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Icon />
+      <Icon className={'fa-brands fa-bootstrap text-primary mt-5 mb-4 fa-4x d-flex justify-content-center'} />
       <Titels />
-      <Forms />
+      <div className="container-fluid row">
+        <div className="col"></div>
+        <div className="col-6">
+          <Forms />
+        </div>
+        <div className="col"></div>
+      </div>
     </div>
   );
 }

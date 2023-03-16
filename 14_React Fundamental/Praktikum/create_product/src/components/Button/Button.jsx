@@ -1,5 +1,5 @@
-const Button = (props) => {
-  return <div className={props.className}>{props.value}</div>;
+const Button = ({ className, value }) => {
+  return <div className={className}>{value}</div>;
 };
 
 export default Button;
