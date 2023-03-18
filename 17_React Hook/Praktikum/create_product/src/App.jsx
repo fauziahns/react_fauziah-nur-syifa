@@ -1,17 +1,17 @@
 import Navbar from './components/Navbar/Navbar';
 import Icon from './components/Icon/Icon';
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Input from './components/Forms/Input';
 import Label from './components/Forms/Label';
 import Textarea from './components/Forms/Tetxtarea';
 import File from './components/Forms/File';
 import Radio from './components/Forms/Radio';
 import Button from './components/Button/Button';
-import Tabel from './components/Tabel/Tabel';
+import {v4} from 'uuid'
 import Select from './components/Forms/Select';
 
-
 function App() {
+  const [list, setList] = useState ([])
   const [data, setData] = useState ("")
   const [productNameClass, setProductNameClass] = useState ("")
   const [productNameError, setProductNameError] = useState ("")
@@ -32,8 +32,9 @@ function App() {
   const [price, setPrice] = useState ("")
   const [priceClassName, setPriceClassName] = useState ("")
   const [priceError, setPriceError] = useState ("")
+  const [fresh, setFresh] = useState ("")
 
-  // Article
+ 
   const article = {
     title: {
       id: "Buat Akun",
@@ -45,7 +46,7 @@ function App() {
     }
   };
   
-  // changeLanguange 
+ 
   const [language, setLanguage] = useState ("Indonesia")
   const [titles, setTitles] = useState (article.title.en)
   const [content, setContent] = useState (article.description.en)
@@ -113,19 +114,41 @@ const getRandomNumber = (e) => {
         setPriceClassName("form-control w-50")
         setPriceError("")
       }
+
+      // add data to tabel
+      const objectData= {
+        data : data,
+        selectProduct : selectProduct,
+        fresh : fresh,
+        price : price
+    }
+    setList([...list, objectData])
   }
 
+  // useEffect : alert welcome
+  useEffect(() => {
+    setTimeout(() => {alert("Welcome!")}, 1000)
+  })
+
+  // delete row table
+  const handleDelete = (i) => {
+    const deleteRow=[...list]
+    deleteRow.splice(i,1)
+    setList(deleteRow)
+  }
+  
   return (
-    <div className="App">
-      <Navbar />
-      <Icon />
+    
+  <div className="App">
+    <Navbar />
+    <Icon />
     <div className="row">
-    <div className="col"></div>
-    <div className="col-9 text-center">
+      <div className="col"></div>
+      <div className="col-9 text-center">
         <h2>{titles}</h2>
         <p>{content}</p>
       </div>
-    <div className="col"></div>
+      <div className="col"></div>
     </div>
     <div className="container row">
       <div className="col"></div>
@@ -134,16 +157,17 @@ const getRandomNumber = (e) => {
           className='btn btn-outline-primary btn-sm me-2'
           onClick={getRandomNumber}>
               Get Random Number
-          </button>
+        </button>
         <button 
           className='btn btn-outline-primary btn-sm' 
           onClick={changeLanguage}>
-            {language}
-          </button>
+          {language}
+        </button>
 
         <form action="" id="form_product" name="formdata">
           {/* productName */}
           <Input 
+            label={'Product Name'}
             type={'email'} 
             maxLength="10"
             value={data}
@@ -187,31 +211,37 @@ const getRandomNumber = (e) => {
             <div className="d-flex">
               <Radio 
                 classNameInput={'form-check-input'} 
+                name="fresh"
                 type={'radio'} 
-                id={'brandNew'} />
+                value={'Brand New'}
+                onChange={(e) => setFresh(e.target.value)} />
               <Label 
-                htmlFor={'flexRadioDefault1'} 
                 className={'form-check-label'} 
+                htmlFor={'brandnew'}
                 label={'Brand New'}/>
             </div>
             <div className="d-flex">
               <Radio 
                 classNameInput={'form-check-input'} 
+                name="fresh"
                 type={'radio'} 
-                id={'secondHank'} />
+                value={'Second Hank'}
+                onChange={(e) => setFresh(e.target.value)} />
               <Label 
-                htmlFor={'flexRadioDefault1'} 
                 className={'form-check-label'} 
+                htmlFor={'secondhank'}
                 label={'Second Hank'} />
             </div>
             <div className="d-flex">
               <Radio 
                 classNameInput={'form-check-input'} 
+                name="fresh"
                 type={'radio'} 
-                id={'refurbished'} />
+                value={'Refurbished'}
+                onChange={(e) => setFresh(e.target.value)} />
               <Label 
-                htmlFor={'flexRadioDefault1'} 
-                className={'form-check-label'} l
+                className={'form-check-label'}
+                htmlFor={'refurbished'}
                 label={'Refurbished'} 
                 />
               </div>
@@ -249,7 +279,34 @@ const getRandomNumber = (e) => {
     </div>
       <div className='text-center '>
         <h3 className='mb-4 mt-5'>List Product</h3>
-        <Tabel/>
+        <table className="table m-1 " id="dataProduct">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Product Name </th>
+            <th scope="col">Product Category</th>
+            <th scope="col">Product Freshness</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+            <tbody>
+                { list.map((item, i) => (
+                    <tr className="m-1">    
+                    <td>{i=v4()}</td>
+                    <td>{item.data}</td>
+                    <td>{item.selectProduct}</td>
+                    <td>{item.fresh}</td>
+                    <td>{item.price}</td>
+                    <td>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(i)}>Delete</button>
+                        <button className="btn btn-success btn-sm ms-2">Edit</button>
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+        </table>
+
       </div>
     </div>
   );

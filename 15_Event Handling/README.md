@@ -8,14 +8,10 @@ Props :
 
 State :
 1. Data dapat dirubah dengan asynchronous
-2. Data dirubah dengan menggunakan syntax this.setState
+2. Data dirubah dengan menggunakan syntax this.setState/ setState
 
 **Cara mendeklarasikan state** 
-class NamaComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {objek: tipedata()};
-	}
+const [getter, setGetter] = useState(nilaiawal)
 
 <h2>Statefull and Stateless Component</h2>
 
