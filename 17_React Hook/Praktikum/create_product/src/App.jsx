@@ -128,7 +128,7 @@ const getRandomNumber = (e) => {
   // useEffect : alert welcome
   useEffect(() => {
     setTimeout(() => {alert("Welcome!")}, 1000)
-  })
+  },[])
 
   // delete row table
   const handleDelete = (i) => {
