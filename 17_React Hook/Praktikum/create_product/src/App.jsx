@@ -9,6 +9,7 @@ import Radio from './components/Forms/Radio';
 import Button from './components/Button/Button';
 import {v4} from 'uuid'
 import Select from './components/Forms/Select';
+import { Modal } from 'react-bootstrap';
 
 function App() {
   const [list, setList] = useState ([])
@@ -33,6 +34,8 @@ function App() {
   const [priceClassName, setPriceClassName] = useState ("")
   const [priceError, setPriceError] = useState ("")
   const [fresh, setFresh] = useState ("")
+  const [deleteId, setDeleteId] = useState("");
+  const [show, setShow] = useState(false);
 
  
   const article = {
@@ -130,12 +133,23 @@ const getRandomNumber = (e) => {
     setTimeout(() => {alert("Welcome!")}, 1000)
   },[])
 
-  // delete row table
-  const handleDelete = (i) => {
-    const deleteRow=[...list]
-    deleteRow.splice(i,1)
-    setList(deleteRow)
-  }
+  // modal delete row table
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleClickDelete = (i) => {
+    setDeleteId(i);
+    setShow(true);
+  };
+
+    const handleDeleteItem = (i) => {
+      const deleteRow=[...list]
+      deleteRow.splice(i,1)
+      setList(deleteRow)
+    }
+
+
   
   return (
     
@@ -299,14 +313,24 @@ const getRandomNumber = (e) => {
                     <td>{item.fresh}</td>
                     <td>{item.price}</td>
                     <td>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(i)}>Delete</button>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
                         <button className="btn btn-success btn-sm ms-2">Edit</button>
                     </td>
                 </tr>
                 ))}
             </tbody>
         </table>
-
+      {/* Modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation Delete Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete this?</Modal.Body>
+        <Modal.Footer>
+          <Button className={"btn btn-danger"} value={"Delete"} onClick={handleDeleteItem}/>
+          <Button className={"btn btn-secondary"} value={"Cancle"} onClick={handleClose}/>
+        </Modal.Footer>
+      </Modal>
       </div>
     </div>
   );
