@@ -10,6 +10,7 @@ import Button from '../component/Button/Button';
 import Select from '../component/Forms/Select';
 import { Modal } from 'react-bootstrap';
 import { Navigate, useNavigate } from "react-router-dom";
+import {v4} from "uuid"
 
 const Product = () => {
   const [list, setList] = useState ([])
@@ -151,7 +152,7 @@ const getRandomNumber = (e) => {
 
   // handle detail data
   const action = (item, i) => {
-    navigate(`/SingleProduct/${i+1}`, {
+    navigate(`/SingleProduct/${i=v4()}`, {
       state: {item}
     })
   }
@@ -314,7 +315,7 @@ const getRandomNumber = (e) => {
                     <tr className="m-1" key={i}>    
                     <td exact
                       className={"nav-link text-primary"}
-                      onClick={()=> action(item, i)}>{i+1}</td>
+                      onClick={()=> action(item, i)}>{i=v4()}</td>
                     <td>{item.data}</td>
                     <td>{item.selectProduct}</td>
                     <td>{item.fresh}</td>
