@@ -24,7 +24,7 @@ const Navbar = () => {
       <ul className="navbar-nav">
         <li className="nav-item">
           <NavLink exact
-            className={"nav-link bg-primary text-light rounded"} 
+            className={"nav-link text-primary"} 
             to="/">Home</NavLink>
         </li>
         <li className="nav-item ms-3">

@@ -1,6 +1,6 @@
 import Navbar from "../component/Navbar/Navbar"
 import Icon from '../component/Icon/Icon';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Input from '../component/Forms/Input';
 import Label from '../component/Forms/Label';
 import Textarea from '../component/Forms/Tetxtarea';
@@ -8,7 +8,8 @@ import File from '../component/Forms/File';
 import Radio from '../component/Forms/Radio';
 import Button from '../component/Button/Button';
 import Select from '../component/Forms/Select';
-import {v4} from 'uuid'
+import { Modal } from 'react-bootstrap';
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [list, setList] = useState ([])
@@ -33,8 +34,10 @@ const Product = () => {
   const [priceClassName, setPriceClassName] = useState ("")
   const [priceError, setPriceError] = useState ("")
   const [fresh, setFresh] = useState ("")
+  const [deleteId, setDeleteId] = useState("");
+  const [show, setShow] = useState(false);
+  const Navigate = useNavigate()
 
- 
   const article = {
     title: {
       id: "Buat Akun",
@@ -125,20 +128,36 @@ const getRandomNumber = (e) => {
     setList([...list, objectData])
   }
 
-  // // useEffect : alert welcome
-  // useEffect(() => {
-  //   setTimeout(() => {alert("Welcome!")}, 1000)
-  // })
+  // useEffect : alert welcome
+  useEffect(() => {
+    setTimeout(() => {alert("Welcome!")}, 1000)
+  }, [])
 
-  // delete row table
-  const handleDelete = (i) => {
+  // modal delete row table
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleClickDelete = (i) => {
+    setDeleteId(i);
+    setShow(true);
+  };
+
+  const handleDeleteItem = (i) => {
     const deleteRow=[...list]
     deleteRow.splice(i,1)
     setList(deleteRow)
   }
-  
-  return (
-    
+
+  // handle detail data
+  const action = (item, i) => {
+    Navigate(`/product/SingleProduct/${i+1}`, {
+      state: {item}
+    })
+  }
+
+
+  return ( 
   <div className="App">
     <Navbar />
     <Icon />
@@ -292,21 +311,33 @@ const getRandomNumber = (e) => {
           </thead>
             <tbody>
                 { list.map((item, i) => (
-                    <tr className="m-1">    
-                    <td>{i=v4()}</td>
+                    <tr className="m-1" key={i}>    
+                    <td exact
+                      className={"nav-link text-primary"}
+                      onClick={()=> action(item, i)}>{i+1}</td>
                     <td>{item.data}</td>
                     <td>{item.selectProduct}</td>
                     <td>{item.fresh}</td>
                     <td>{item.price}</td>
                     <td>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(i)}>Delete</button>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
                         <button className="btn btn-success btn-sm ms-2">Edit</button>
                     </td>
                 </tr>
                 ))}
             </tbody>
         </table>
-
+      {/* Modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation Delete Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete this?</Modal.Body>
+        <Modal.Footer>
+          <Button className={"btn btn-danger"} value={"Delete"} onClick={handleDeleteItem}/>
+          <Button className={"btn btn-secondary"} value={"Cancle"} onClick={handleClose}/>
+        </Modal.Footer>
+      </Modal>
       </div>
     </div>
   );
