@@ -36,7 +36,7 @@ const Product = () => {
   const [fresh, setFresh] = useState ("")
   const [deleteId, setDeleteId] = useState("");
   const [show, setShow] = useState(false);
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
 
   const article = {
     title: {
@@ -151,7 +151,7 @@ const getRandomNumber = (e) => {
 
   // handle detail data
   const action = (item, i) => {
-    Navigate(`/product/SingleProduct/${i+1}`, {
+    navigate(`/SingleProduct/${i+1}`, {
       state: {item}
     })
   }
@@ -320,7 +320,9 @@ const getRandomNumber = (e) => {
                     <td>{item.fresh}</td>
                     <td>{item.price}</td>
                     <td>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
+                        <button 
+                          className="btn btn-danger btn-sm" 
+                          onClick={() => handleClickDelete(i)}>Delete</button>
                         <button className="btn btn-success btn-sm ms-2">Edit</button>
                     </td>
                 </tr>
