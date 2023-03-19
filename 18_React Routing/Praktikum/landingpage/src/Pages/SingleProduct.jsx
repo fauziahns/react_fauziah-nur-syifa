@@ -1,3 +1,4 @@
+import Navbar from "../component/Navbar/Navbar"
 import { useLocation, useParams } from "react-router-dom"
 
 const SingleProduct = () => {
@@ -5,8 +6,10 @@ const SingleProduct = () => {
     const {data, selectProduct, fresh, price} = state.item
     console.log(state)
     return (
+        <>
+        <Navbar/>
         <div className="p-5">
-        <h2 className="text-center">Detail Product </h2>
+        <h2 className="text-center mb-5">Detail Product </h2>
         <table className="table m-1 ">
             <thead>
                 <tr>
@@ -25,6 +28,7 @@ const SingleProduct = () => {
                 </tr>
             </tbody>
             </table></div>
+            </>
     )
 }
 
