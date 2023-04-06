@@ -16,14 +16,14 @@ function ShowProduct() {
         setShow(false);
     };
 
-    const handleClickDelete = (i) => {
-        setDeleteId(i);
+    const handleClickDelete = (data) => {
+        setDeleteId(data);
         setShow(true);
     };
 
-        const handleDeleteItem = (i) => {
+        const handleDeleteItem = (data) => {
         const deleteRow=[...list]
-        deleteRow.splice(i,1)
+        deleteRow.splice(data,1)
         setList(deleteRow)
     }
   return (
@@ -49,7 +49,7 @@ function ShowProduct() {
                             <td>{fresh}</td>
                             <td>{price}</td>
                             <td>
-                                <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
+                                <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(data)}>Delete</button>
                                 <button className="btn btn-success btn-sm ms-2">Edit</button>
                             </td>
                         </tr>
