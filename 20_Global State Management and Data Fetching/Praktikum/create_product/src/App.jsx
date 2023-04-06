@@ -1,23 +1,22 @@
 import Navbar from './components/Navbar/Navbar';
 import Icon from './components/Icon/Icon';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Input from './components/Forms/Input';
 import Label from './components/Forms/Label';
 import Textarea from './components/Forms/Tetxtarea';
 import File from './components/Forms/File';
 import Radio from './components/Forms/Radio';
 import Button from './components/Button/Button';
-import {v4} from 'uuid'
 import Select from './components/Forms/Select';
-import { Modal } from 'react-bootstrap';
 import { useDispatch } from "react-redux"
+import { update } from './features/productSlice';
+import ShowProduct from './ShowProduct';
 
 function App() {
-  const [list, setList] = useState ([])
   const [data, setData] = useState ("")
   const [productNameClass, setProductNameClass] = useState ("")
   const [productNameError, setProductNameError] = useState ("")
-  const [selectProduct, setSelectProduct] = useState ("")
+  const [selectProduct, setSelectProduct] = useState("")
   const [selectNameClass, setSelectNameClass] = useState ("form-select w-25")
   const [selectError, setSelectError] = useState ("")
   const valueOption = [
@@ -35,17 +34,13 @@ function App() {
   const [priceClassName, setPriceClassName] = useState ("")
   const [priceError, setPriceError] = useState ("")
   const [fresh, setFresh] = useState ("")
-  const [deleteId, setDeleteId] = useState("");
-  const [show, setShow] = useState(false);
-  
-  const dispatch = useDispatch() // 
+  const dispatch = useDispatch()
 
-  const handleSubmit = (event) => {
-      event.preventDefault()
-      dispatch(addTodo(text))
-      setText('')
+  const onSubmit = (e) => {
+    e.preventDefault()
+    dispatch(update({data,selectProduct,file,fresh,price}))
   }
- 
+
   const article = {
     title: {
       id: "Buat Akun",
@@ -92,70 +87,7 @@ const getRandomNumber = (e) => {
     } 
   }
 
-  // validation form
-  const onSubmit = () => {
-      if (selectProduct === '') {
-        setSelectNameClass("border border-danger form-select w-25")
-        setSelectError("The Category Field Must be Filled In")
-      }else {
-        setSelectNameClass("form-select w-25")
-        setSelectError("")
-      }
-
-      if (file === '') {
-        setFileNameClass("form-control text-primary border-danger fontsize w-50 border border-danger ")
-        setFileError("The Image Filed Must be Filled In")
-      } else {
-        setFileNameClass("form-control text-primary border-primary fontsize w-50")
-        setFileError("")
-      }
-
-      if (description === '') {
-        setDescriptionClassName("form-control border border-danger")
-        setDescriptionError("The Description Filed Must be Filled In")
-      } else {
-        setDescriptionClassName("form-control")
-        setDescriptionError("")
-      }
-
-      if (price === '') {
-        setPriceClassName("form-control w-50 border border-danger")
-        setPriceError("The Price Filed Must be Filled In")
-      }else {
-        setPriceClassName("form-control w-50")
-        setPriceError("")
-      }
-
-      // add data to tabel
-      const objectData= {
-        data : data,
-        selectProduct : selectProduct,
-        fresh : fresh,
-        price : price
-    }
-    setList([...list, objectData])
-  }
-
-  // modal delete row table
-  const handleClose = () => {
-    setShow(false);
-  };
-
-  const handleClickDelete = (i) => {
-    setDeleteId(i);
-    setShow(true);
-  };
-
-    const handleDeleteItem = (i) => {
-      const deleteRow=[...list]
-      deleteRow.splice(i,1)
-      setList(deleteRow)
-    }
-
-
-  
   return (
-    
   <div className="App">
     <Navbar />
     <Icon />
@@ -289,51 +221,11 @@ const getRandomNumber = (e) => {
               className={'btn btn-primary w-75 my-3'} 
               value={'Submit'}
               onClick={onSubmit}/>
-    </form>
-      </div>
-        <div className="col"></div>
-          </div>
-          <div className='text-center '>
-            <h3 className='mb-4 mt-5'>List Product</h3>
-              <table className="table m-1 " id="dataProduct">
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Product Name </th>
-                    <th scope="col">Product Category</th>
-                    <th scope="col">Product Freshness</th>
-                    <th scope="col">Product Price</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                    <tbody>
-                        { list.map((item, i) => (
-                            <tr className="m-1">    
-                            <td>{i=v4()}</td>
-                            <td>{item.data}</td>
-                            <td>{item.selectProduct}</td>
-                            <td>{item.fresh}</td>
-                            <td>{item.price}</td>
-                            <td>
-                                <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
-                                <button className="btn btn-success btn-sm ms-2">Edit</button>
-                            </td>
-                        </tr>
-                        ))}
-                    </tbody>
-                </table>
-      {/* Modal */}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmation Delete Item</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure want to delete this?</Modal.Body>
-        <Modal.Footer>
-          <Button className={"btn btn-danger"} value={"Delete"} onClick={handleDeleteItem}/>
-          <Button className={"btn btn-secondary"} value={"Cancle"} onClick={handleClose}/>
-        </Modal.Footer>
-      </Modal>
-      </div>
+          </form>
+            </div>
+              <div className="col"></div>
+                </div>
+                <ShowProduct/>
     </div>
   );
 }
