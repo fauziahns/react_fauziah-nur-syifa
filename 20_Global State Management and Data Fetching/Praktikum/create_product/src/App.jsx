@@ -10,6 +10,7 @@ import Button from './components/Button/Button';
 import {v4} from 'uuid'
 import Select from './components/Forms/Select';
 import { Modal } from 'react-bootstrap';
+import { useDispatch } from "react-redux"
 
 function App() {
   const [list, setList] = useState ([])
@@ -36,7 +37,14 @@ function App() {
   const [fresh, setFresh] = useState ("")
   const [deleteId, setDeleteId] = useState("");
   const [show, setShow] = useState(false);
+  
+  const dispatch = useDispatch() // 
 
+  const handleSubmit = (event) => {
+      event.preventDefault()
+      dispatch(addTodo(text))
+      setText('')
+  }
  
   const article = {
     title: {
@@ -127,11 +135,6 @@ const getRandomNumber = (e) => {
     }
     setList([...list, objectData])
   }
-
-  // useEffect : alert welcome
-  useEffect(() => {
-    setTimeout(() => {alert("Welcome!")}, 1000)
-  },[])
 
   // modal delete row table
   const handleClose = () => {
@@ -285,41 +288,40 @@ const getRandomNumber = (e) => {
             <Button 
               className={'btn btn-primary w-75 my-3'} 
               value={'Submit'}
-              onClick={onSubmit}
-            />
-          </form>
+              onClick={onSubmit}/>
+    </form>
       </div>
-      <div className="col"></div>
-    </div>
-      <div className='text-center '>
-        <h3 className='mb-4 mt-5'>List Product</h3>
-        <table className="table m-1 " id="dataProduct">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Product Name </th>
-            <th scope="col">Product Category</th>
-            <th scope="col">Product Freshness</th>
-            <th scope="col">Product Price</th>
-            <th scope="col">Action</th>
-          </tr>
-          </thead>
-            <tbody>
-                { list.map((item, i) => (
-                    <tr className="m-1">    
-                    <td>{i=v4()}</td>
-                    <td>{item.data}</td>
-                    <td>{item.selectProduct}</td>
-                    <td>{item.fresh}</td>
-                    <td>{item.price}</td>
-                    <td>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
-                        <button className="btn btn-success btn-sm ms-2">Edit</button>
-                    </td>
-                </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className="col"></div>
+          </div>
+          <div className='text-center '>
+            <h3 className='mb-4 mt-5'>List Product</h3>
+              <table className="table m-1 " id="dataProduct">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Product Name </th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Product Freshness</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                    <tbody>
+                        { list.map((item, i) => (
+                            <tr className="m-1">    
+                            <td>{i=v4()}</td>
+                            <td>{item.data}</td>
+                            <td>{item.selectProduct}</td>
+                            <td>{item.fresh}</td>
+                            <td>{item.price}</td>
+                            <td>
+                                <button className="btn btn-danger btn-sm" onClick={() => handleClickDelete(i)}>Delete</button>
+                                <button className="btn btn-success btn-sm ms-2">Edit</button>
+                            </td>
+                        </tr>
+                        ))}
+                    </tbody>
+                </table>
       {/* Modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

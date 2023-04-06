@@ -1,1 +1,3 @@
-fauziah
+Redux memiliki tiga konsep utama yaitu action, reducer dan store. Action adalah objek yang mengandung informasi tentang perubahan yang terjadi pada state aplikasi. Reducer adalah fungsi yang mengolah action dan mengembalikan state baru berdasarkan action yang diterima. Store adalah sebuah wadah yang menyimpan state aplikasi dan menyediakan fungsi untuk mengubah state tersebut.
+
+React Redux menggunakan Provider untuk menyediakan state aplikasi pada seluruh komponen yang ada pada aplikasi. Selain itu, React Redux juga menyediakan fungsi connect() yang memungkinkan komponen untuk terhubung dengan state aplikasi.
