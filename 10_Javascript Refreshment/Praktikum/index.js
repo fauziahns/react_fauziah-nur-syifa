@@ -1,4 +1,4 @@
-const form = document.getElementById('form_product');
+const form = document.querySelector('#form_product');
 const productName = document.getElementById('products');
 const productCategory = document.getElementById('option');
 const productImage = document.getElementById('formFile');
@@ -8,7 +8,7 @@ const productFreshness = document.getElementsByClassName('product_freshness');
 const submit = document.querySelector('#submit');
 const input = document.querySelectorAll('#input');
 
-submit.addEventListener('click', function (event) {
+const onSubmit = (event) => {
   try {
     console.log('berhasil');
     const name = document.getElementById('products').value;
@@ -38,4 +38,8 @@ submit.addEventListener('click', function (event) {
   } catch (error) {
     console.error(error);
   }
-});
+}
+
+form.addEventListener('submit', (e) => onSubmit(e))
+
+// submit.addEventListener('click', (e) => onSubmit(e));
