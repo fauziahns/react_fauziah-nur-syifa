@@ -11,10 +11,11 @@ import Select from '../component/Forms/Select';
 import { Modal } from 'react-bootstrap';
 import { Navigate, useNavigate } from "react-router-dom";
 import {v4} from "uuid"
+import axios from "axios";
 
 const Product = () => {
   const [list, setList] = useState ([])
-  const [data, setData] = useState ("")
+  const [name, setName] = useState ("")
   const [productNameClass, setProductNameClass] = useState ("")
   const [productNameError, setProductNameError] = useState ("")
   const [selectProduct, setSelectProduct] = useState ("")
@@ -38,6 +39,21 @@ const Product = () => {
   const [deleteId, setDeleteId] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate()
+  const baseURL = 'https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts'
+  
+  // fetching data
+  const getProducts = async () => {
+    try{
+      let response = await axios.get(baseURL)
+      setList(response.data)
+    } catch(e) {
+      console.log(e.message)
+    }
+  }
+
+  useEffect(() => {
+    getProducts()
+  },[])
 
   const article = {
     title: {
@@ -49,8 +65,6 @@ const Product = () => {
       en: "Below is an example form built entirely with Bootstraps form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
     }
   };
-  
- 
   const [language, setLanguage] = useState ("Indonesia")
   const [titles, setTitles] = useState (article.title.en)
   const [content, setContent] = useState (article.description.en)
@@ -75,8 +89,8 @@ const getRandomNumber = (e) => {
 
  // onChange form
   const handleInput = (e) => {
-    setData(e.target.value)
-    if (data.length >= 10) {
+    setName(e.target.value)
+    if (name.length >= 10) {
       setProductNameClass("border border-danger")
       setProductNameError("The product name cannot be longer than 10 characters")
     } else {
@@ -121,18 +135,23 @@ const getRandomNumber = (e) => {
 
       // add data to tabel
       const objectData= {
-        data : data,
+        name : name,
         selectProduct : selectProduct,
         fresh : fresh,
         price : price
     }
     setList([...list, objectData])
-  }
 
-  // useEffect : alert welcome
-  useEffect(() => {
-    setTimeout(() => {alert("Welcome!")}, 1000)
-  }, [])
+    //methode POST axios
+    const data = { name, selectProduct, fresh, price };
+    axios.post(baseURL, data)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   // modal delete row table
   const handleClose = () => {
@@ -151,9 +170,9 @@ const getRandomNumber = (e) => {
   }
 
   // handle detail data
-  const action = (item, i) => {
+  const action = (data, i) => {
     navigate(`/SingleProduct/${i=v4()}`, {
-      state: {item}
+      state: {data}
     })
   }
 
@@ -190,7 +209,7 @@ const getRandomNumber = (e) => {
             label={'Product Name'}
             type={'email'} 
             maxLength="10"
-            value={data}
+            value={name}
             className={productNameClass}
             onChangeText={handleInput}
              />
@@ -311,15 +330,15 @@ const getRandomNumber = (e) => {
           </tr>
           </thead>
             <tbody>
-                { list.map((item, i) => (
+                { list.map((data, i) => (
                     <tr className="m-1" key={i}>    
                     <td exact
                       className={"nav-link text-primary pointer"}
-                      onClick={()=> action(item, i)}>{i=v4()}</td>
-                    <td>{item.data}</td>
-                    <td>{item.selectProduct}</td>
-                    <td>{item.fresh}</td>
-                    <td>{item.price}</td>
+                      onClick={()=> action(data, i)}>{i=v4()}</td>
+                    <td>{data.name}</td>
+                    <td>{data.selectProduct}</td>
+                    <td>{data.fresh}</td>
+                    <td>{data.price}</td>
                     <td>
                         <button 
                           className="btn btn-danger btn-sm" 

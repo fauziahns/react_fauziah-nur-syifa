@@ -2,6 +2,7 @@ import Navbar from "../component/Navbar/Navbar"
 import { useLocation, useParams, NavLink } from "react-router-dom"
 
 const SingleProduct = () => {
+
     const { state } = useLocation()
     const {data, selectProduct, fresh, price} = state.item
     console.log(state)

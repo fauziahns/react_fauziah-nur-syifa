@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
+const apollo = new ApolloClient({
     uri: 'https://inviting-woodcock-10.hasura.app/v1/graphql',
     cache: new InMemoryCache(),
     headers: {
