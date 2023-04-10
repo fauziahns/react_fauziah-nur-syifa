@@ -26,8 +26,8 @@ const Login = () => {
 
     return(
         <div>
-            <div>
-                <label htmlFor="">Email</label>
+            <div className="my-5 mx-5">
+                <label htmlFor="" className="m-2">Email</label>
                 <input 
                     type="email" 
                     name="email" 
@@ -36,7 +36,7 @@ const Login = () => {
                     onChange = {(e) => setUser({...user, email: e.target.value})}
                 />
 
-                <label htmlFor="">Password</label>
+                <label htmlFor="" className="m-2">Password</label>
                 <input 
                     type="password" 
                     name="password" 
