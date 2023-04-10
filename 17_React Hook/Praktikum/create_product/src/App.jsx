@@ -143,6 +143,7 @@ const getRandomNumber = (e) => {
     setShow(true);
   };
 
+    //axios delete method
     const handleDeleteItem = (i) => {
       const deleteRow=[...list]
       deleteRow.splice(i,1)

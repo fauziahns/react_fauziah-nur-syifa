@@ -36,12 +36,11 @@ const Product = () => {
   const [priceClassName, setPriceClassName] = useState ("")
   const [priceError, setPriceError] = useState ("")
   const [fresh, setFresh] = useState ("")
-  const [deleteId, setDeleteId] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate()
+  const [refresh, setRefresh] = useState(0)
   const baseURL = 'https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts'
   
-  // fetching data
+  // get method 
   const getProducts = async () => {
     try{
       let response = await axios.get(baseURL)
@@ -79,13 +78,6 @@ const Product = () => {
           setContent(article.description.en)
   }
 }
-
-// Random Number
-const getRandomNumber = (e) => {
-  e.preventDefault()
-  const randomNumber = Math.floor(Math.random() * 20)
-  console.log({randomNumber})
-};
 
  // onChange form
   const handleInput = (e) => {
@@ -153,20 +145,16 @@ const getRandomNumber = (e) => {
       });
   }
 
-  // modal delete row table
-  const handleClose = () => {
-    setShow(false);
-  };
-
   const handleClickDelete = (id) => {
     const deleteRow=[...list]
     deleteRow.splice(id,1)
     setList(deleteRow)
 
+    //delete methode axios
     axios
       .delete(`https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts/${id}`)
       .then(response => {
-        console.log("deleted successfully!")
+        alert("deleted successfully!")
       })
   };
 
@@ -177,7 +165,17 @@ const getRandomNumber = (e) => {
     })
   }
 
-  
+  const onUpdate = () => {
+    if (name && selectProduct && fresh && price) {
+        axios.put(`https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts/${id}`, list)
+            .then(res => {
+                setList({ name: "", selectProduct: "", fresh: "", price: "" });
+                setRefresh(refresh + 1)
+            })
+            .catch(err => console.log(err))
+
+    }
+};
 
   return ( 
   <div className="App">
@@ -194,11 +192,6 @@ const getRandomNumber = (e) => {
     <div className="container row">
       <div className="col"></div>
       <div className="col-6">
-        <button 
-          className='btn btn-outline-primary btn-sm me-2'
-          onClick={getRandomNumber}>
-              Get Random Number
-        </button>
         <button 
           className='btn btn-outline-primary btn-sm' 
           onClick={changeLanguage}>
@@ -314,6 +307,11 @@ const getRandomNumber = (e) => {
               value={'Submit'}
               onClick={onSubmit}
             />
+            <Button 
+              className={'btn btn-primary w-75 my-3'} 
+              value={'Update'}
+              onClick={onUpdate()}
+            />
           </form>
       </div>
       <div className="col"></div>
@@ -345,10 +343,9 @@ const getRandomNumber = (e) => {
                         <button 
                           className="btn btn-danger btn-sm" 
                           onClick={() => handleClickDelete(data.id)}>Delete</button>
-                        <Link 
-                          className="btn btn-success btn-sm ms-2"
-                          to={`/edit/${data.id}`}
-                        >Update</Link>
+                          <button 
+                          className="btn btn-success ms-2 btn-sm" 
+                          >Update</button>
                     </td>
                 </tr>
                 ))}

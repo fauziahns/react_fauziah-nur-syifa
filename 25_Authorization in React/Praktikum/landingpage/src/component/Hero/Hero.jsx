@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Button from '../Button/ButtonOne'
 import './style.css'
 
@@ -14,7 +15,7 @@ const Hero = () => {
             Bootstrap
           </p>
           <div className="hero_button ms-5 mt-5">
-            <Button label={'Get Started'}/>
+            <Link className='btn btn-success' to='/login'> Login </Link>
             <span className="hero_span" href="#">
               Watch Video
             </span>
