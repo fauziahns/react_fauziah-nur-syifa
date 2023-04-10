@@ -22,10 +22,10 @@ const SingleProduct = () => {
             </thead>
             <tbody>
                 <tr className="m-1">
-                    <td>{data.data}</td>
-                    <td>{data.selectProduct}</td>
-                    <td>{data.fresh}</td>
-                    <td>{data.price}</td>
+                    <td>{data}</td>
+                    <td>{selectProduct}</td>
+                    <td>{fresh}</td>
+                    <td>{price}</td>
                 </tr>
             </tbody>
             </table>

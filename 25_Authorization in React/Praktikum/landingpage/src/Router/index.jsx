@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import LandingPage from "../Pages/LandingPage"
 import Product from "../Pages/Product"
 import SingleProduct from "../Pages/SingleProduct"
-import EditProduct from "../Pages/EditProduct"
 
 const Router = () => {
     return(
@@ -13,7 +12,6 @@ const Router = () => {
             <Route path="/" exact Component={LandingPage}/>
             <Route path="/Product" Component={Product}/>
             <Route path="/SingleProduct/:id" Component={SingleProduct}/>
-            <Route path="/edit/:i" Component={EditProduct}/>
         </Routes>
         </BrowserRouter>
         </>

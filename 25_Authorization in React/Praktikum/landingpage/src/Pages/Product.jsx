@@ -9,7 +9,7 @@ import Radio from '../component/Forms/Radio';
 import Button from '../component/Button/Button';
 import Select from '../component/Forms/Select';
 import { Modal } from 'react-bootstrap';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import {v4} from "uuid"
 import axios from "axios";
 
@@ -158,26 +158,30 @@ const getRandomNumber = (e) => {
     setShow(false);
   };
 
-  const handleClickDelete = (id) => {
+  const handleClickDelete = (i) => {
+    setDeleteId(i);
+    setShow(true);
+  };
+
+  const handleDeleteItem = (i,e) => {
     const deleteRow=[...list]
-    deleteRow.splice(id,1)
+    deleteRow.splice(i,1)
     setList(deleteRow)
 
-    axios
-      .delete(`https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts/${id}`)
-      .then(response => {
-        console.log("deleted successfully!")
-      })
-  };
+    axios.delete(`https://642db251bf8cbecdb40cd2d5.mockapi.io/api/products/dataProducts/:${i}`)
+    .then(response => {
+      console.log('Data Product Successfully Deleted', response)
+    })
+    .catch(error => console.log(error))
+  }
 
   // handle detail data
   const action = (data, i) => {
-    navigate(`/SingleProduct/${id=v4()}`, {
+    navigate(`/SingleProduct/${i=v4()}`, {
       state: {data}
     })
   }
 
-  
 
   return ( 
   <div className="App">
@@ -332,11 +336,11 @@ const getRandomNumber = (e) => {
           </tr>
           </thead>
             <tbody>
-                { list.map((data, id) => (
-                    <tr className="m-1" key={id}>    
+                { list.map((data, i) => (
+                    <tr className="m-1" key={i}>    
                     <td exact
                       className={"nav-link text-primary pointer"}
-                      onClick={()=> action(data, id)}>{id=v4()}</td>
+                      onClick={()=> action(data, i)}>{i=v4()}</td>
                     <td>{data.name}</td>
                     <td>{data.selectProduct}</td>
                     <td>{data.fresh}</td>
@@ -344,17 +348,27 @@ const getRandomNumber = (e) => {
                     <td>
                         <button 
                           className="btn btn-danger btn-sm" 
-                          onClick={() => handleClickDelete(data.id)}>Delete</button>
-                        <Link 
+                          onClick={(e) => handleClickDelete(data.i, e)}>Delete</button>
+                        <button 
                           className="btn btn-success btn-sm ms-2"
-                          to={`/edit/${data.id}`}
-                        >Update</Link>
+                          onClick={() => selectUser(data.i)}>
+                            Update</button>
                     </td>
                 </tr>
                 ))}
             </tbody>
         </table>
       {/* Modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation Delete Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete this?</Modal.Body>
+        <Modal.Footer>
+          <Button className={"btn btn-danger"} value={"Delete"} onClick={handleDeleteItem}/>
+          <Button className={"btn btn-secondary"} value={"Cancle"} onClick={handleClose}/>
+        </Modal.Footer>
+      </Modal>
       </div>
     </div>
   );
