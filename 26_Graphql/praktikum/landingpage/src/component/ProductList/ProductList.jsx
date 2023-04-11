@@ -1,18 +1,19 @@
 import { gql, useQuery } from "@apollo/client"
 import { useEffect, useState } from "react"
 
-const Getprooductlist = gql`
+const Getproductlist = gql`
         query MyQuery {
-                table_product {
-                    id
-                    name
-                    price
-                    selectProduct
-                }
-        }
+            table_product {
+            id
+            name
+            selectProduct
+            fresh
+            price
+            }
+        }  
 `
-const prooductlist = () => {
-     const {data, loading, error} = useQuery(Getprooductlist)
+const ProductList = () => {
+     const {data, loading, error} = useQuery(Getproductlist)
      const [product, setProduct] = useState([])
      useEffect(() => {
         console.log('loading', loading);
@@ -20,7 +21,7 @@ const prooductlist = () => {
         console.log('error = ', error);
 
         if(!loading && error !== undefined){
-            setguest(data.guest)
+            setProduct(data.table_product)
         }
      })
 
@@ -28,9 +29,12 @@ const prooductlist = () => {
         <>
             {
                 loading ? <p>loading</p> : 
-                data?.product.map(item => 
+                product?.map(item => 
                     <div>
-                        <p>{item.event_name}</p>
+                        <p>{item.name}</p>
+                        <p>{item.selectProduct}</p>
+                        <p>{item.fresh}</p>
+                        <p>{item.price}</p>
                     </div>
                 )
             }
@@ -38,4 +42,4 @@ const prooductlist = () => {
      )
      
 }
-export default prooductlist
+export default ProductList
