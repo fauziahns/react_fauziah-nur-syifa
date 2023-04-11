@@ -28,7 +28,7 @@ const ProductList = () => {
      return(
         <>
             {
-                loading ? <p>loading</p> : 
+                loading ? <p>LOADING</p> : 
                 product?.map(item => 
                     <div>
                         <p>{item.name}</p>
