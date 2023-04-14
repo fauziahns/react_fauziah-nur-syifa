@@ -1,10 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-    uri : 'https://fair-hamster-74.hasura.app/v1/graphql',
+    uri : 'https://premium-loon-68.hasura.app/v1/graphql',
     cache : new InMemoryCache(),
     headers : {
-        'x-hasura-admin-secret':'1bTgk6yF2r8IfCAg2Rm0c4taA9ntHTivHsJQEaxRQcqwAeOZUkWFbDRCdgp0zNhf'
+        'x-hasura-admin-secret':'nGuRkQwXKgQDRBpBbnigBgW21Xtq1BI17PiRpiyYlcgEDLAsnvFzY2haTNGZEYEr'
     }
 })
 export default client

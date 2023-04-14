@@ -9,7 +9,6 @@ import Radio from '../component/Forms/Radio';
 import Button from '../component/Button/Button';
 import Select from '../component/Forms/Select';
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import {v4} from "uuid"
 import { gql, useMutation } from "@apollo/client";
 import { Getproductlist } from "../component/ProductList/ProductList";
 
@@ -138,7 +137,7 @@ const Product = () => {
     insertProduct({
       variables: {
         object: {
-          id: v4(),
+          id: 16,
           name: name,
           selectProduct: selectProduct,
           fresh: fresh,
@@ -157,7 +156,7 @@ const Product = () => {
 
   // handle detail data
   const action = (data, i) => {
-    navigate(`/SingleProduct/${id=v4()}`, {
+    navigate(`/SingleProduct/${id}`, {
       state: {data}
     })
   }
@@ -314,7 +313,7 @@ const Product = () => {
                     <tr className="m-1" key={id}>    
                     <td exact
                       className={"nav-link text-primary pointer"}
-                      onClick={()=> action(data, id)}>{id=v4()}</td>
+                      onClick={()=> action(data, id)}>{id}</td>
                     <td>{data.name}</td>
                     <td>{data.selectProduct}</td>
                     <td>{data.fresh}</td>

@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client"
 import { useEffect, useState } from "react"
+import client from "../../apollo"
 
 export const Getproductlist = gql`
         query MyQuery {
@@ -13,6 +14,13 @@ export const Getproductlist = gql`
             }
         }  
 `
+const DELETE_PRODUCT = gql `
+    mutation MyMutation($id: Int!) {
+        delete_table_product(where: {id: {_eq: $id}}) {
+            affected_rows
+            }
+    }
+`
 const ProductList = () => {
      const {data, loading, error} = useQuery(Getproductlist)
      const [product, setProduct] = useState([])
@@ -25,6 +33,25 @@ const ProductList = () => {
             setProduct(data.table_product)
         }
      })
+
+    //  const deleteProduct = (e) => {
+    //     e.preventDefault()
+    //     client.mutate({
+    //         mutation: DELETE_PRODUCT,
+    //         variables: {name: table_product.name},
+    //         optimisticResponse: {},
+    //         update: (cache) => {
+    //             const exsistingProduct = cache.readQuery({
+    //                 query:Getproductlist
+    //             })
+    //             const newProduct = exsistingProduct.table_product.filter(t => (t.name =! name))
+    //             cache.writeQuery({
+    //                 query: Getproductlist,
+    //                 data: { table_product: newProduct}
+    //             })
+    //         }
+    //     })
+    //  }
 
      return(
         <div className="wrapper text-center pb-4 p-5">
@@ -41,11 +68,14 @@ const ProductList = () => {
                                 <div className="card-body">
                                     <h5 className="card-title">{item.name}</h5>
                                     <p className="card-text">
-                                        {item.name} the freshness is {item.fresh} 
+                                        {item.name} the description is {item.description} 
                                     </p>
                                     <p className="card-text fw-bold">Price : {item.price}</p>
-                                    <a href="#" className="btn btn-outline-primary">
-                                    Go somewhere
+                                    <a href="#" className="btn btn-outline-danger btn-sm">
+                                    Delete 
+                                    </a>
+                                    <a href="#" className="btn btn-outline-success ms-2 btn-sm">
+                                    Edit 
                                     </a>
                                 </div>
                             </div>
