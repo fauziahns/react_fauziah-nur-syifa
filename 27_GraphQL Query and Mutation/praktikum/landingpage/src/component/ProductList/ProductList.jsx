@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client"
+import { gql, useMutation, useQuery } from "@apollo/client"
 import { useEffect, useState } from "react"
 import client from "../../apollo"
 
@@ -16,8 +16,8 @@ export const Getproductlist = gql`
 `
 const DELETE_PRODUCT = gql `
     mutation MyMutation($id: Int!) {
-        delete_table_product(where: {id: {_eq: $id}}) {
-            affected_rows
+        delete_table_product_by_pk(where: {id: $id}) {
+                 id
             }
     }
 `
@@ -34,25 +34,15 @@ const ProductList = () => {
         }
      })
 
-    //  const deleteProduct = (e) => {
-    //     e.preventDefault()
-    //     client.mutate({
-    //         mutation: DELETE_PRODUCT,
-    //         variables: {name: table_product.name},
-    //         optimisticResponse: {},
-    //         update: (cache) => {
-    //             const exsistingProduct = cache.readQuery({
-    //                 query:Getproductlist
-    //             })
-    //             const newProduct = exsistingProduct.table_product.filter(t => (t.name =! name))
-    //             cache.writeQuery({
-    //                 query: Getproductlist,
-    //                 data: { table_product: newProduct}
-    //             })
-    //         }
-    //     })
-    //  }
+     const [deleteProduct] = useMutation(DELETE_PRODUCT, {
+        refetchQueries: [Getproductlist]
+     })
 
+     const onDelete = (id) => {
+        deleteProduct({variables : {
+            id: id
+        }})
+     }
      return(
         <div className="wrapper text-center pb-4 p-5">
             <div className="seacrh">
@@ -71,7 +61,7 @@ const ProductList = () => {
                                         {item.name} the description is {item.description} 
                                     </p>
                                     <p className="card-text fw-bold">Price : {item.price}</p>
-                                    <a href="#" className="btn btn-outline-danger btn-sm">
+                                    <a href="#" className="btn btn-outline-danger btn-sm" onClick={onDelete}>
                                     Delete 
                                     </a>
                                     <a href="#" className="btn btn-outline-success ms-2 btn-sm">

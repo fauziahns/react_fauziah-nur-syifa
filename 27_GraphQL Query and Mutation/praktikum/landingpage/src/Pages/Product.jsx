@@ -11,6 +11,7 @@ import Select from '../component/Forms/Select';
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { Getproductlist } from "../component/ProductList/ProductList";
+import { NavItem } from "react-bootstrap";
 
 const ADD_PRODUCT = gql `
   mutation MyQuery($object: table_product_insert_input!) {
@@ -24,7 +25,13 @@ const ADD_PRODUCT = gql `
     }
   }
 `
-
+const DELETE_PRODUCT = gql `
+    mutation MyMutation($id: Int!) {
+        delete_table_product_by_pk(where: {id: $id}) {
+                 id
+            }
+    }
+`
 const Product = () => {
   const [list, setList] = useState ([])
   const [name, setName] = useState ("")
@@ -54,6 +61,10 @@ const Product = () => {
   const [insertProduct] = useMutation(ADD_PRODUCT,{
     refetchQueries: [Getproductlist]
   })
+
+  const [deleteProduct] = useMutation(DELETE_PRODUCT, {
+    refetchQueries: [Getproductlist]
+ })
 
   const article = {
     title: {
@@ -134,10 +145,11 @@ const Product = () => {
         price : price
     }
     setList([...list, objectData])
+    //insert mutation
     insertProduct({
       variables: {
         object: {
-          id: 16,
+          id: 2,
           name: name,
           selectProduct: selectProduct,
           fresh: fresh,
@@ -146,13 +158,18 @@ const Product = () => {
         }
       }
     })
+    
   }
 
   const handleClickDelete = (id) => {
     const deleteRow=[...list]
     deleteRow.splice(id,1)
     setList(deleteRow)
-  };
+
+    deleteProduct({variables : {
+      id: id
+    }})
+  }
 
   // handle detail data
   const action = (data, i) => {

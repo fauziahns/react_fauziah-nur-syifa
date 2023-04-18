@@ -3,7 +3,10 @@ import Navbar from "../component/Navbar/Navbar"
 import ProductList from "../component/ProductList/ProductList"
 import './styleLandingPage.css'
 
+
+
 const LandingPage = () => {
+  
     return(
         <>
         <Navbar/>
