@@ -1,0 +1,78 @@
+/* Comfortaa */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=Jost:wght@400;500;600;700&family=Montserrat:wght@200;500;800&display=swap');
+
+* {
+  margin: 0px;
+  font-family: 'Comfortaa', cursive;
+  font-family: 'Jost', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.navbar {
+  font-size: 13px;
+}
+
+.nav-link:hover {
+  color: #652f91;
+}
+
+.hero {
+  background-image: url(./assets/hero-background.png);
+}
+
+.heroTitel {
+  color: #c175ff;
+}
+
+.heroContent {
+  padding-top: 100px;
+  width: 50%;
+  padding-bottom: 180px;
+  margin-left: 40px;
+}
+
+.heroContent button {
+  border-color: #652f91;
+}
+.heroContent button:hover {
+  background-color: #c175ff;
+  color: #fff;
+  border-color: #fff;
+}
+
+.contact {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+.logo {
+  width: 20%;
+}
+
+.logoNavbar {
+  width: 7%;
+}
+
+.footer {
+  font-family: 'Comfortaa', cursive;
+  font-family: 'Jost', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: rgb(225, 225, 248);
+}
+
+.icon a {
+  color: rgb(244, 232, 255);
+}
+
+.icon a:hover {
+  color: blueviolet;
+}
+
+.right {
+  font-size: 14px;
+}
+.copyright {
+  background-color: #652f91;
+  font-size: 10px;
+}
