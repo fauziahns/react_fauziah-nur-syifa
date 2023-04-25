@@ -9,7 +9,7 @@ import Radio from './components/Forms/Radio';
 import Button from './components/Button/Button';
 import Tabel from './components/Tabel/Tabel';
 import Select from './components/Forms/Select';
-import { renderHook } from '@testing-library/react-hooks';
+
 
 function App() {
   const [data, setData] = useState ("")
