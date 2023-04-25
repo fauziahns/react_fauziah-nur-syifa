@@ -1,3 +1,6 @@
+LINK DEPLOY
+deployy-lts8bcan6-fauziahns.vercel.app
+
 (29) DEPLOYMENT
 ## Build React App
 Tujuan dari Build adalah agar aplikasi yang telah kita buat menjadi versi production sehingga membuat performanya lebih ringan dan cepat.
