@@ -10,6 +10,18 @@ const httplink = new HttpLink({
     }
 })
 
+const wslink = new WebSocketLink({
+    uri : 'wss://premium-loon-68.hasura.app/v1/graphql',
+    options: {
+        reconnect: true,
+        connectionParams : {
+            headers: {
+                'x-hasura-admin-secret':'nGuRkQwXKgQDRBpBbnigBgW21Xtq1BI17PiRpiyYlcgEDLAsnvFzY2haTNGZEYEr'
+            }
+        }
+    }
+})
+
 const splitlink = split(
     ({query}) => {
         const definition = getMainDefinition(query)
@@ -22,17 +34,7 @@ const splitlink = split(
     httplink,
 )
 
-const wslink = new WebSocketLink({
-    uri : 'https://premium-loon-68.hasura.app/v1/graphql',
-    options: {
-        reconnect: true,
-        connectionParams : {
-            headers: {
-                'x-hasura-admin-secret':'nGuRkQwXKgQDRBpBbnigBgW21Xtq1BI17PiRpiyYlcgEDLAsnvFzY2haTNGZEYEr'
-            }
-        }
-    }
-})
+
 
 const client = new ApolloClient({
     link: splitlink,
